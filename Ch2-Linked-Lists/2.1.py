@@ -20,6 +20,7 @@ def main():
     ll = createLinkedList([0, -4, 3, 3, 185, -4, 8, 29, 0, 1])
     removeDupsNoBuffer(ll)
     ll.printVals()
+    print("")
 
     ll = createLinkedList([])
     removeDupsBuffer(ll)
@@ -29,11 +30,25 @@ def main():
     ll = createLinkedList([])
     removeDupsNoBuffer(ll)
     ll.printVals()
+    print("")
+
+    ll = createLinkedList([1])
+    removeDupsBuffer(ll)
+    ll.printVals()
+    print("")
+
+    ll = createLinkedList([1])
+    removeDupsNoBuffer(ll)
+    ll.printVals()
+    print("")
 
 
 # Removes duplicates in O(N) time
 # Returns updated list
 def removeDupsBuffer(list):
+    if list.length <= 1:
+        return list
+
     buffer = {}
 
     iterator = LinkedListIterator(list)
@@ -44,7 +59,6 @@ def removeDupsBuffer(list):
         currentVal = iterator.getCurrentVal()
         if currentVal in buffer:
             list.deleteNode(iterator.getCurrentNode())
-            list.deleteNode(buffer[currentVal])
         else:
             buffer[currentVal] = iterator.getCurrentNode()
 
@@ -54,7 +68,8 @@ def removeDupsBuffer(list):
     return list
 
 
-# Removes duplicates in O(N^2) time
+# Removes duplicates in O(N^2) time, but O(1) space
+# Returns updated list
 def removeDupsNoBuffer(list):
     if list.length <= 1:
         return list
@@ -79,7 +94,6 @@ def removeDupsNoBuffer(list):
             if outerIterator.getCurrentNode() != innerIterator.getCurrentNode():
                 if outerVal == innerVal:
                     list.deleteNode(innerIterator.getCurrentNode())
-                    list.deleteNode(outerIterator.getCurrentNode())
 
             if not innerIterator.next():
                 keepGoingAgain = False

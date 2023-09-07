@@ -51,20 +51,21 @@ class FixedMultiStack:
     def pop(self, stackNum):
         stackStartIndex = stackNum * self.stackMaxSize
 
-        currentIndex = stackStartIndex + self.sizes[stackNum] + 1
-        nextIndex = currentIndex - 1
+        currentIndex = stackStartIndex + self.sizes[stackNum] - 1
+        
         if self.sizes[stackNum] == 0:
             raise self.EmptyStackException("ERROR: Stack " + str(stackNum) + " is empty.")
         else:
             # can comment out next line to slightly speed up algorithm
-            self.arr[nextIndex] = None
+            self.arr[currentIndex] = None
 
             self.sizes[stackNum] -= 1
 
     def peek(self, stackNum):
         if not self.isEmpty(stackNum):
             stackStartIndex = stackNum * self.stackMaxSize
-            return self.arr[stackStartIndex + self.sizes[stackNum]]
+            currentIndex = stackStartIndex + self.sizes[stackNum] - 1
+            return self.arr[currentIndex]
         else:
             raise self.EmptyStackException("ERROR: Stack " + str(stackNum) + " is empty.")
 

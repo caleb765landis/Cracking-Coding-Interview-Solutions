@@ -12,8 +12,9 @@ def main():
     s = FixedMultiStack()
     testStack(s)
 
-    # s = DynamicMultiStack()
-    # testStack(s)
+    print("""===============================================\nDynamicMultiStack\n""")
+    s = DynamicMultiStack()
+    testStack(s)
 
 
 def testStack(s):
@@ -55,6 +56,8 @@ def testStack(s):
         pass
     finally:
         pass
+    s.printArr()
+    s.printSizes()
     print("")
 
     print("Pop until stack is empty")
@@ -86,6 +89,8 @@ def testStack(s):
     s.printArr()
     s.printSizes()
     print(s.peek(1))
+    s.printArr()
+    s.printSizes()
     print("")
 
     print("Push even though max is reached")
@@ -95,6 +100,8 @@ def testStack(s):
         pass
     finally:
         pass
+    s.printArr()
+    s.printSizes()
     print("")
 
     print("Pop until stack is empty")
@@ -135,6 +142,8 @@ def testStack(s):
         pass
     finally:
         pass
+    s.printArr()
+    s.printSizes()
     print("")
 
     print("Pop until stack is empty")

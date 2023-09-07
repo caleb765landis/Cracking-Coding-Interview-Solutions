@@ -121,9 +121,6 @@ class DynamicMultiStack:
     def push(self, data, stackNum):
         currentIndex = self.startIndexes[stackNum] + self.sizes[stackNum] - 1
         nextIndex = (currentIndex + 1) % self.arrSize
-        # print("start index: " + str(self.startIndexes[stackNum]))
-        # print(currentIndex)
-        # print("next index: " + str(nextIndex))
 
         # if array is aready full
         if self.numItems == len(self.arr):
@@ -132,7 +129,7 @@ class DynamicMultiStack:
         # if there is a collision with the next stack
         elif nextIndex == self.startIndexes[(stackNum + 1) % self.numStacks]:
             # shift items in next stack
-            self.shift((stackNum + 1) % self.numStacks)
+            self.__shift((stackNum + 1) % self.numStacks)
 
         # push data to next spot
         self.arr[nextIndex] = data
@@ -177,7 +174,7 @@ class DynamicMultiStack:
 
     # shifts all items in stack one spot to the right in the array
     # if this stack runs into next one, shifts that stack too
-    def shift(self, stackNum):
+    def __shift(self, stackNum):
         if self.arrSize == self.numItems:
             raise self.ArrayFullException("ERROR: Array is full.")
         

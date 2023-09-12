@@ -12,32 +12,49 @@ A: pg.277
 import math
 
 def main():
-    doubleNum = 72
+    doubleNum = 0.72
+    # expecting output of ERROR
+    BinToStr(doubleNum)
+
+    doubleNum = 0.75
+    # expecting output of 0.11
+    BinToStr(doubleNum)
+
+    doubleNum = -23
+    # expecting output of ERROR
+    BinToStr(doubleNum)
+
+    doubleNum = 23
+    # expecting output of ERROR
+    BinToStr(doubleNum)
+
+    doubleNum = 0.375
+    # expecting output of 0.011
     BinToStr(doubleNum)
 
 def BinToStr(doubleNum):
-    # if doubleNum <= 0 or doubleNum >= 1:
-    #     print("ERROR")
+    if doubleNum <= 0 or doubleNum >= 1:
+        print("ERROR")
 
-    # power = 0
     current = doubleNum
-    binStr = ""
-    for i in range (31, -1, -1):
-        # print("i: " + str(i))
-        
-        factor = math.pow(2, i)
-        # print("factor: " + str(factor))
+    binStr = "0."
+    for i in range (32):
+        power = -(i + 1)
+        factor = math.pow(2, power)
 
         if factor <= current:
             binStr += "1"
             current -= factor
+        elif current == 0:
+            break
         else:
             binStr += "0"
 
     # can trim leading 0s if don't want to show all 32 bits
-
-    print(binStr)
-    # print(len(binStr))
+    if current != 0:
+        print("ERROR")
+    else:
+        print(binStr)
 
 if __name__ == "__main__":
     main()
